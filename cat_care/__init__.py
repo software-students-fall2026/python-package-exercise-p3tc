@@ -11,6 +11,7 @@ from .core import (
 )
 from .kitchen import Kitchen
 from .shop import Shop
+from .cat_manager import CatManager
 
 __all__ = [
     "Cat",
@@ -24,4 +25,5 @@ __all__ = [
     "Kitchen",
     "Shop",
     "meow_cat"
+    "CatManager"
 ]
