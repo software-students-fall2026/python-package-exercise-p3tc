@@ -1,8 +1,11 @@
-from cat_care import Food, Kitchen, create_cat, draw_cat, feed_cat, play_with_cat
+from cat_care import Food, Kitchen, create_cat, draw_cat, feed_cat, play_with_cat, meow_cat
 
 
 def main() -> None:
     cat = create_cat("Mochi")
+
+    print("\nMochi says hello!")
+    print(meow_cat(cat,3))
 
     print("\nWelcome to the cat shop! You have unlimited coins.")
     for item, price in cat.shop.prices.items():

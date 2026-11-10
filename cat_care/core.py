@@ -132,3 +132,17 @@ def draw_cat(cat: Cat) -> str:
             f"( {_FACES[emotion]} )",
         )
     )
+def meow_cat(cat: Cat, times: int) -> str: 
+    """Return a strong of the cat meowing a given number of times."""
+    if not isinstance(cat, Cat): 
+        raise TypeError("cat must be a Cat object.")
+
+    if type(times) is not int: 
+        raise TypeError("Times must be a whole number.")
+
+    if times <= 0:
+        raise ValueError("Times must be greater than zero.")
+
+    meows = " ".join(["Meow!"] * times)
+    return f"{cat.CatName}: {meows}"
+
