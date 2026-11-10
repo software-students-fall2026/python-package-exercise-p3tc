@@ -8,6 +8,7 @@ from .core import (
     nap_cat,
     play_with_cat,
 )
+from .kitchen import Kitchen
 
 __all__ = [
     "Cat",
@@ -18,4 +19,5 @@ __all__ = [
     "feed_cat",
     "nap_cat",
     "play_with_cat",
+    "Kitchen",
 ]
