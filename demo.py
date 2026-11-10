@@ -1,4 +1,4 @@
-from cat_care import Food, Kitchen, create_cat, draw_cat, feed_cat, play_with_cat, meow_cat
+from cat_care import Food, Kitchen, create_cat, draw_cat, feed_cat, play_with_cat, meow_cat, nap_cat
 
 
 def main() -> None:
@@ -16,6 +16,11 @@ def main() -> None:
     print("\nMochi plays for 25 minutes.")
     play_with_cat(cat, 25)
     print(draw_cat(cat))
+
+    print(f"\nMochi's energy before nap: {cat.CatEnergy}/100")
+    restored = nap_cat(cat, 5)
+    print(f"Mochi naps for 5 minutes and restores {restored} energy.")
+    print(f"Energy after nap: {cat.CatEnergy}/100")
 
     feed_cat(cat, Food.WATER)
     print(f"Mochi drinks some water. Thirst: {cat.CatThirst}/100")
