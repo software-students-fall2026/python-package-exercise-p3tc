@@ -24,6 +24,7 @@ def test_create_cat_rejects_invalid_names(name, error):
 
 def test_feed_single_food(capsys):
     cat = Cat("Mochi")
+    cat.shop.buy(Food.FISH)
 
     feed_cat(cat, Food.FISH)
 
@@ -34,6 +35,8 @@ def test_feed_single_food(capsys):
 
 def test_feed_list_applies_all_food_and_reports_once(capsys):
     cat = Cat("Mochi")
+    cat.shop.buy(Food.KIBBLE)
+    cat.shop.buy(Food.TREAT)
 
     feed_cat(cat, [Food.KIBBLE, Food.TREAT])
 
@@ -45,6 +48,7 @@ def test_feed_list_applies_all_food_and_reports_once(capsys):
 
 def test_feed_caps_fullness_at_100(capsys):
     cat = Cat("Mochi")
+    cat.shop.buy(Food.FISH, 2)
 
     feed_cat(cat, [Food.FISH, Food.FISH])
 
@@ -104,6 +108,7 @@ def test_invalid_play_time_leaves_cat_unchanged(minutes, error):
 )
 def test_draw_cat_at_mood_boundaries(minutes, hunger, emotion, face):
     cat = Cat("Mochi")
+    cat.shop.buy(Food.FISH)
     feed_cat(cat, Food.FISH)
     play_with_cat(cat, minutes)
 
@@ -112,3 +117,24 @@ def test_draw_cat_at_mood_boundaries(minutes, hunger, emotion, face):
     assert cat.CatHunger == hunger
     assert cat.CatEmotion is emotion
     assert drawing == [f"Mochi [{emotion.value}]", " /\\_/\\", f"( {face} )"]
+
+
+@pytest.mark.parametrize(("drink", "hunger", "thirst"), [
+    (Food.WATER, 45, 25),
+    (Food.MILK, 35, 35),
+    (Food.BROTH, 40, 30),
+])
+def test_feed_treat_and_drink_together(drink, hunger, thirst):
+    cat = Cat("Mochi")
+    cat.shop.buy(Food.TREAT)
+    with pytest.raises(ValueError, match="shop"):
+        feed_cat(cat, [Food.TREAT, drink])
+    assert cat.shop.quantity(Food.TREAT) == 1
+    assert cat.CatHunger == cat.CatThirst == 50
+
+    cat.shop.buy(drink)
+    feed_cat(cat, [Food.TREAT, drink])
+    assert cat.CatHunger == hunger
+    assert cat.CatThirst == thirst
+    assert cat.shop.quantity(drink) == 0
+    assert cat.shop.quantity(Food.TREAT) == 0

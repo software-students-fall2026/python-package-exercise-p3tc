@@ -2,13 +2,20 @@ from enum import Enum
 
 
 class Food(Enum):
-    FISH = 30
-    KIBBLE = 15
-    TREAT = 5
-    FISH_KIBBLE_BOWL = 45
-    FISH_TREAT_BITES = 35
-    KIBBLE_TREAT_MIX = 20
-    CAT_FEAST = 50
+    FISH = (30, 0)
+    KIBBLE = (15, 0)
+    TREAT = (5, 0)
+    WATER = (0, 25)
+    MILK = (10, 15)
+    BROTH = (5, 20)
+    FISH_KIBBLE_BOWL = (45, 0)
+    FISH_TREAT_BITES = (35, 0)
+    KIBBLE_TREAT_MIX = (20, 0)
+    CAT_FEAST = (50, 0)
+    SOFT_KIBBLE = (15, 25)
+    MILKY_TREATS = (15, 15)
+    FISH_SOUP = (35, 20)
+    FISH_KIBBLE_STEW = (50, 20)
 
 
 class Emotion(Enum):
@@ -35,6 +42,11 @@ class Cat:
         self.CatName = name
         self._hunger = 50
         self._energy = 100
+        self._thirst = 50
+
+        from .shop import Shop
+
+        self.shop = Shop()
 
     @property
     def CatHunger(self) -> int:
@@ -53,6 +65,10 @@ class Cat:
         if self.CatHunger <= 30:
             return Emotion.HAPPY
         return Emotion.CONTENT
+
+    @property
+    def CatThirst(self) -> int:
+        return self._thirst
 
 
 def create_cat(name: str) -> Cat:
@@ -74,8 +90,11 @@ def feed_cat(cat: Cat, food: Food | list[Food]) -> None:
     if any(not isinstance(item, Food) for item in foods):
         raise TypeError("Every item must be a Food value.")
 
-    hunger_reduction = sum(item.value for item in foods)
-    cat._hunger = max(0, cat.CatHunger - hunger_reduction)
+    cat.shop._consume(*(item for item in foods if item in cat.shop.prices))
+    for item in foods:
+        hunger_relief, thirst_relief = item.value
+        cat._hunger = max(0, cat.CatHunger - hunger_relief)
+        cat._thirst = max(0, cat.CatThirst - thirst_relief)
     fullness = 100 - cat.CatHunger
     print(f"{cat.CatName} | Fullness: {fullness}/100 | Mood: {cat.CatEmotion.value}")
 
