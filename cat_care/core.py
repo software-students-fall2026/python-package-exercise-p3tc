@@ -5,6 +5,10 @@ class Food(Enum):
     FISH = 30
     KIBBLE = 15
     TREAT = 5
+    FISH_KIBBLE_BOWL = 45
+    FISH_TREAT_BITES = 35
+    KIBBLE_TREAT_MIX = 20
+    CAT_FEAST = 50
 
 
 class Emotion(Enum):
