@@ -2,6 +2,7 @@ from .core import (
     Cat,
     Emotion,
     Food,
+    Toy,
     create_cat,
     draw_cat,
     feed_cat,
@@ -17,6 +18,7 @@ __all__ = [
     "Cat",
     "Emotion",
     "Food",
+    "Toy",
     "create_cat",
     "draw_cat",
     "feed_cat",
@@ -24,6 +26,6 @@ __all__ = [
     "play_with_cat",
     "Kitchen",
     "Shop",
-    "meow_cat"
-    "CatManager"
+    "meow_cat",
+    "CatManager",
 ]
