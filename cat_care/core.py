@@ -149,7 +149,7 @@ def draw_cat(cat: Cat) -> str:
         )
     )
 def meow_cat(cat: Cat, times: int) -> str: 
-    """Return a strong of the cat meowing a given number of times."""
+    """Return a cat's meows based on its mood."""
     if not isinstance(cat, Cat): 
         raise TypeError("cat must be a Cat object.")
 
@@ -159,6 +159,11 @@ def meow_cat(cat: Cat, times: int) -> str:
     if times <= 0:
         raise ValueError("Times must be greater than zero.")
 
-    meows = " ".join(["Meow!"] * times)
+    if cat.CatEmotion == Emotion.HUNGRY:
+        sound = "MEOOOW!!"
+    elif cat.CatEmotion == Emotion.HAPPY: 
+        sound= "Meow!♡"
+    else:
+        sound = "Meow."
+    meows = " ".join([sound]*times)
     return f"{cat.CatName}: {meows}"
-
