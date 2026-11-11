@@ -1,13 +1,43 @@
+# P3 Cat Care
+
+[![Test and build](https://github.com/software-students-fall2026/python-package-exercise-p3tc/actions/workflows/ci.yml/badge.svg?event=pull_request)](https://github.com/software-students-fall2026/python-package-exercise-p3tc/actions/workflows/ci.yml)
+
+[P3 Cat Care on PyPI](https://pypi.org/project/p3-cat-care/)
+
+P3 Cat Care is a small Python package for raising ASCII cats in the terminal. Create and feed cats, buy supplies, cook meals, play with toys, and restore energy through naps. Register multiple cats with a `CatManager` and let them build friendships by playing together.
+
+## Installation
+
+Python 3.10 or later is required.
+
+```bash
+python -m pip install p3-cat-care
+```
+
+On systems where Python is available as `python3`, use `python3` in place of `python`.
+
+## Quick Start
+
+```python
+from cat_care import Food, create_cat, draw_cat, feed_cat
+
+cat = create_cat("Mochi")
+cat.shop.buy(Food.FISH)
+feed_cat(cat, Food.FISH)
+print(draw_cat(cat))
+```
+
+The package is installed as `p3-cat-care` and imported as `cat_care`.
 
 
+## Team
 
-
-
-
-
-
-
-
+- [Sihao(Jacky) Chen](https://github.com/Abyssjac)
+- [Jessie Zhang](https://github.com/jessiezhang218)
+- [Sarah Toussaint](https://github.com/sarahtoussaint)
+- [Shiqi Wang](https://github.com/ShiqiWang1115)
+- [Bella Mbaezue](https://github.com/nonyembaezue)
+- [Selma Nahas](https://github.com/berrizy)
 
 ## API Reference
 
