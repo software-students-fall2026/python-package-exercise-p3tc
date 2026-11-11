@@ -103,14 +103,26 @@ def feed_cat(cat: Cat, food: Food | list[Food]) -> None:
     print(f"{cat.CatName} | Fullness: {fullness}/100 | Mood: {cat.CatEmotion.value}")
 
 
-def play_with_cat(cat: Cat, minutes: int) -> None:
+def play_with_cat(
+    cat: Cat, minutes: int, toy: Toy | None = None
+) -> None:
+    """Play with the cat using an optional reusable toy."""
     if type(minutes) is not int:
         raise TypeError("Play time must be a whole number of minutes.")
     if minutes <= 0:
         raise ValueError("Play time must be greater than zero.")
+    if toy is not None and not isinstance(toy, Toy):
+        raise TypeError("Toy must be a Toy value or None.")
 
-    cat._hunger = min(100, cat.CatHunger + minutes)
-    cat._energy = max(0, cat.CatEnergy - minutes)
+    rates = {
+        None: (1, 1),
+        Toy.BALL: (2, 2),
+        Toy.FEATHER: (1, 2),
+    }
+    hunger_rate, energy_rate = rates[toy]
+
+    cat._hunger = min(100, cat.CatHunger + minutes * hunger_rate)
+    cat._energy = max(0, cat.CatEnergy - minutes * energy_rate)
 
 
 def nap_cat(cat: Cat, minutes: int) -> int:
