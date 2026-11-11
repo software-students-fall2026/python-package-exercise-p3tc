@@ -23,6 +23,10 @@ class Emotion(Enum):
     CONTENT = "content"
     HAPPY = "happy"
 
+class Toy(Enum):
+    BALL = "ball"
+    FEATHER = "feather"
+
 
 _FACES = {
     Emotion.HUNGRY: "T.T",
