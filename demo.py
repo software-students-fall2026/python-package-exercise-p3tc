@@ -16,6 +16,7 @@ def main() -> None:
     print("\nMochi plays for 25 minutes.")
     play_with_cat(cat, 25)
     print(draw_cat(cat))
+    print(meow_cat(cat,2))
 
     print(f"\nMochi's energy before nap: {cat.CatEnergy}/100")
     restored = nap_cat(cat, 5)
@@ -35,6 +36,7 @@ def main() -> None:
     print("\nMochi eats kibble and a treat.")
     feed_cat(cat, [Food.KIBBLE, Food.TREAT])
     print(draw_cat(cat))
+    print(meow_cat(cat, 2))
 
     print("\nMochi has some milk.")
     feed_cat(cat, Food.MILK)
