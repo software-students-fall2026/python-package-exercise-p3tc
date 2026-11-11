@@ -36,7 +36,7 @@ The package is installed as `p3-cat-care` and imported as `cat_care`.
 - [Jessie Zhang](https://github.com/jessiezhang218)
 - [Sarah Toussaint](https://github.com/sarahtoussaint)
 - [Shiqi Wang](https://github.com/ShiqiWang1115)
-- [Bella Mbaezue](https://github.com/nonyembaezue)
+- [Belle Mbaezue](https://github.com/nonyembaezue)
 - [Selma Nahas](https://github.com/berrizy)
 
 ## API Reference
