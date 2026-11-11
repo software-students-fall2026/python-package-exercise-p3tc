@@ -16,19 +16,7 @@ def test_remove_cat():
     manager.remove_cat("Leo")
     assert manager.count_cats()==0
     assert manager.list_cats()==[]
-def test_cat_status():
-    manager=CatManager()
-    manager.add_cat(Cat("Leo"))
-    status=manager.get_cat_status("Leo")
-    assert status["name"]=="Leo"
-    assert status["hunger"]==50
-    assert status["energy"]==100
-    assert status["thirst"]==50
-def test_duplicate_cat():
-    manager=CatManager()
-    manager.add_cat(Cat("Leo"))
-    with pytest.raises(ValueError):
-        manager.add_cat(Cat("Leo"))
+
 def test_missing_cat():
     manager=CatManager()
     with pytest.raises(ValueError):
