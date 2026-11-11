@@ -8,6 +8,7 @@ from cat_care import (
     meow_cat,
     nap_cat,
     play_with_cat,
+    Toy,
 )
 
 
@@ -34,6 +35,14 @@ def main() -> None:
     print("\nMochi plays for 25 minutes.")
     play_with_cat(cat, 25)
     print(draw_cat(cat))
+
+    print("\nMochi plays with a ball for 2 minutes.")
+    play_with_cat(cat, 2, toy=Toy.BALL)
+    print(f"Hunger: {cat.CatHunger}/100 | Energy: {cat.CatEnergy}/100")
+
+    print("\nMochi plays with a feather for 2 minutes.")
+    play_with_cat(cat, 2, toy=Toy.FEATHER)
+    print(f"Hunger: {cat.CatHunger}/100 | Energy: {cat.CatEnergy}/100")
 
     print(f"Energy before nap: {cat.CatEnergy}/100")
     restored = nap_cat(cat, 5)
